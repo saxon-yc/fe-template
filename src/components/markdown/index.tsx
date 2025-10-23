@@ -174,7 +174,7 @@ export default function MarkdownRender(props: MarkdownProps) {
   }
 
   return (
-    <>
+    <div className='markdown-body'>
       {contextHolder}
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
@@ -354,6 +354,6 @@ export default function MarkdownRender(props: MarkdownProps) {
       >
         {children}
       </ReactMarkdown>
-    </>
+    </div>
   )
 }

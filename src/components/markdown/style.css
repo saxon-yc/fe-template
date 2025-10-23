@@ -1,238 +1,239 @@
 /* 恢复被 TailwindCSS 重置的默认样式 */
+.markdown-body {
+  /* 标题样式 */
+  h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0.67em 0;
+    line-height: 1.25;
+  }
 
-/* 标题样式 */
-h1 {
-  font-size: 2em;
-  font-weight: bold;
-  margin: 0.67em 0;
-  line-height: 1.25;
-}
+  h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0.83em 0;
+    line-height: 1.25;
+  }
 
-h2 {
-  font-size: 1.5em;
-  font-weight: bold;
-  margin: 0.83em 0;
-  line-height: 1.25;
-}
+  h3 {
+    font-size: 1.17em;
+    font-weight: bold;
+    margin: 1em 0;
+    line-height: 1.25;
+  }
 
-h3 {
-  font-size: 1.17em;
-  font-weight: bold;
-  margin: 1em 0;
-  line-height: 1.25;
-}
+  h4 {
+    font-size: 1em;
+    font-weight: bold;
+    margin: 1.33em 0;
+    line-height: 1.25;
+  }
 
-h4 {
-  font-size: 1em;
-  font-weight: bold;
-  margin: 1.33em 0;
-  line-height: 1.25;
-}
+  h5 {
+    font-size: 0.83em;
+    font-weight: bold;
+    margin: 1.67em 0;
+    line-height: 1.25;
+  }
 
-h5 {
-  font-size: 0.83em;
-  font-weight: bold;
-  margin: 1.67em 0;
-  line-height: 1.25;
-}
+  h6 {
+    font-size: 0.67em;
+    font-weight: bold;
+    margin: 2.33em 0;
+    line-height: 1.25;
+  }
 
-h6 {
-  font-size: 0.67em;
-  font-weight: bold;
-  margin: 2.33em 0;
-  line-height: 1.25;
-}
+  /* 段落样式 */
+  p {
+    margin: 1em 0;
+    line-height: 1.6;
+  }
 
-/* 段落样式 */
-p {
-  margin: 1em 0;
-  line-height: 1.6;
-}
+  /* 列表样式 */
+  ul {
+    list-style-type: disc;
+    margin: 1em 0;
+    padding-left: 2em;
+  }
 
-/* 列表样式 */
-ul {
-  list-style-type: disc;
-  margin: 1em 0;
-  padding-left: 2em;
-}
+  ol {
+    list-style-type: decimal;
+    margin: 1em 0;
+    padding-left: 2em;
+  }
 
-ol {
-  list-style-type: decimal;
-  margin: 1em 0;
-  padding-left: 2em;
-}
+  li {
+    margin: 0.5em 0;
+    line-height: 1.6;
+  }
 
-li {
-  margin: 0.5em 0;
-  line-height: 1.6;
-}
+  /* 嵌套列表 */
+  ul ul {
+    list-style-type: circle;
+    margin: 0.5em 0;
+  }
 
-/* 嵌套列表 */
-ul ul {
-  list-style-type: circle;
-  margin: 0.5em 0;
-}
+  ul ul ul {
+    list-style-type: square;
+  }
 
-ul ul ul {
-  list-style-type: square;
-}
+  ol ol {
+    list-style-type: lower-alpha;
+    margin: 0.5em 0;
+  }
 
-ol ol {
-  list-style-type: lower-alpha;
-  margin: 0.5em 0;
-}
+  ol ol ol {
+    list-style-type: lower-roman;
+  }
 
-ol ol ol {
-  list-style-type: lower-roman;
-}
+  /* 引用样式 */
+  blockquote {
+    margin: 1em 0;
+    padding: 0 1em;
+    border-left: 4px solid #ddd;
+    color: #666;
+    font-style: italic;
+  }
 
-/* 引用样式 */
-blockquote {
-  margin: 1em 0;
-  padding: 0 1em;
-  border-left: 4px solid #ddd;
-  color: #666;
-  font-style: italic;
-}
+  /* 分割线样式 */
+  hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 2em 0;
+  }
 
-/* 分割线样式 */
-hr {
-  border: none;
-  border-top: 1px solid #ddd;
-  margin: 2em 0;
-}
+  /* 强调样式 */
+  strong,
+  b {
+    font-weight: bold;
+  }
 
-/* 强调样式 */
-strong,
-b {
-  font-weight: bold;
-}
+  em,
+  i {
+    font-style: italic;
+  }
 
-em,
-i {
-  font-style: italic;
-}
+  /* 链接样式 */
+  a {
+    color: #1890ff;
+    text-decoration: underline;
+  }
 
-/* 链接样式 */
-a {
-  color: #1890ff;
-  text-decoration: underline;
-}
+  a:hover {
+    color: #40a9ff;
+  }
 
-a:hover {
-  color: #40a9ff;
-}
+  /* code-block-container */
+  .code-block-container {
+    position: relative;
+    margin: 1em 0;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .code-block-container:last-child {
+    margin: 0;
+  }
+  .code-block-container > div {
+    margin: 0 !important;
+  }
 
-/* code-block-container */
-.code-block-container {
-  position: relative;
-  margin: 1em 0;
-  border-radius: 6px;
-  overflow: hidden;
-}
-.code-block-container:last-child {
-  margin: 0;
-}
-.code-block-container > div {
-  margin: 0 !important;
-}
+  /* code-block-header */
+  .code-block-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: #4b5157;
+    color: #e9ecef;
+    font-size: 0.85em;
+  }
 
-/* code-block-header */
-.code-block-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 16px;
-  background-color: #4b5157;
-  color: #e9ecef;
-  font-size: 0.85em;
-}
+  .code-language {
+    /* text-transform: uppercase; */
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
 
-.code-language {
-  /* text-transform: uppercase; */
-  font-weight: 500;
-  letter-spacing: 0.5px;
-}
+  .copy-button {
+    color: #e9ecef;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .copy-button:hover {
+    opacity: 1;
+    color: #ffffff;
+  }
 
-.copy-button {
-  color: #e9ecef;
-  opacity: 0.7;
-  transition: opacity 0.2s;
-}
-.copy-button:hover {
-  opacity: 1;
-  color: #ffffff;
-}
+  /* 内联代码样式 */
+  code {
+    background-color: rgba(175, 184, 193, 0.2);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family:
+      SFMono-Regular,
+      Consolas,
+      Liberation Mono,
+      Menlo,
+      monospace;
+    font-size: 85%;
+  }
 
-/* 内联代码样式 */
-code {
-  background-color: rgba(175, 184, 193, 0.2);
-  padding: 0.2em 0.4em;
-  border-radius: 3px;
-  font-family:
-    SFMono-Regular,
-    Consolas,
-    Liberation Mono,
-    Menlo,
-    monospace;
-  font-size: 85%;
-}
+  /* 移除代码块内的内联代码样式 */
+  pre code {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+  }
 
-/* 移除代码块内的内联代码样式 */
-pre code {
-  background-color: transparent;
-  padding: 0;
-  border-radius: 0;
-}
+  img {
+    max-width: 680px;
+  }
 
-img {
-  max-width: 680px;
-}
+  /* GitHub 风格的表格样式 */
+  table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    margin: 16px 0;
+    width: 100%;
+  }
+  th {
+    font-weight: 600;
+    background-color: #f6f8fa;
+  }
+  td,
+  th {
+    padding: 6px 13px;
+    border: 1px solid #d0d7de;
+  }
+  tr {
+    background-color: #ffffff;
+    border-top: 1px solid #d0d7de;
+  }
+  tbody tr:hover {
+    background-color: #f3f4f6;
+  }
 
-/* GitHub 风格的表格样式 */
-table {
-  border-spacing: 0;
-  border-collapse: collapse;
-  margin: 16px 0;
-  width: 100%;
-}
-th {
-  font-weight: 600;
-  background-color: #f6f8fa;
-}
-td,
-th {
-  padding: 6px 13px;
-  border: 1px solid #d0d7de;
-}
-tr {
-  background-color: #ffffff;
-  border-top: 1px solid #d0d7de;
-}
-tbody tr:hover {
-  background-color: #f3f4f6;
-}
+  .reference-link {
+    color: #1890ff;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .reference-link:hover {
+    color: #40a9ff;
+  }
 
-.reference-link {
-  color: #1890ff;
-  cursor: pointer;
-  text-decoration: underline;
-}
-.reference-link:hover {
-  color: #40a9ff;
-}
-
-.site-link {
-  display: inline-block;
-  cursor: pointer;
-  width: 16px;
-  min-width: 16px;
-  height: 16px;
-  text-align: center;
-  border-radius: 16px;
-  line-height: 16px;
-  font-size: 12px;
-  background-color: #e5e5e5;
-  color: #333;
-  margin-left: 5px;
+  .site-link {
+    display: inline-block;
+    cursor: pointer;
+    width: 16px;
+    min-width: 16px;
+    height: 16px;
+    text-align: center;
+    border-radius: 16px;
+    line-height: 16px;
+    font-size: 12px;
+    background-color: #e5e5e5;
+    color: #333;
+    margin-left: 5px;
+  }
 }

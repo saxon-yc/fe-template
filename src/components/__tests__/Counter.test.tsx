@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
-import { useAppStore } from '../../store/useAppStore'
+import { useAppStore } from '../../stores/useAppStore'
 
 // 简单的计数器组件用于测试
 function Counter() {

@@ -1,12 +1,12 @@
 #!/bin/bash
 
-PROJECT_NAME="portal-sws"
+PROJECT_NAME="fe-template"
 
-PRODUCTION_IP_ADDRESS="xx-prod-server"
+PRODUCTION_IP_ADDRESS="fe-prod-server"
 PRODUCTION_BIN_PATH="/frontend/bin" # 脚本目录
 PRODUCTION_LIB_PATH="/frontend/lib" # 包（源码）目录
 
-TESTING_IP_ADDRESS="xx-testing-server"
+TESTING_IP_ADDRESS="fe-testing-server"
 TESTING_BIN_PATH="/frontend/bin" # 脚本目录
 TESTING_LIB_PATH="/frontend/lib" # 包（源码）目录
 

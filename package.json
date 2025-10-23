@@ -1,8 +1,30 @@
 {
   "name": "portal-template",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
+  "description": "一个基于React19、Vite7、TypeScript、Ant Design and TailwindCSS的清新优雅的中后台模版。",
+  "author": {
+    "name": "hss",
+    "email": "huangsish@163.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/saxon-yc/fe-template"
+  },
+  "keywords": [
+    "fe-template",
+    "Vite7",
+    "TypeScript",
+    "Ant Design",
+    "Zustand",
+    "Tanstack Router",
+    "TailwindCSS"
+  ],
+  "engines": {
+    "node": ">=18.12.0",
+    "pnpm": ">=8.7.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -13,16 +35,20 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
-    "serve": "vite preview",
-    "gen:api": "node ./scripts/generate-api.js",
+    "gen-api": "node ./scripts/generate-api.js",
+    "preview": "vite preview",
+    "deploy:prod": "sh ./scripts/deploy.sh production",
+    "deploy:testing": "sh ./scripts/deploy.sh testing",
     "prepare": "husky install"
   },
   "dependencies": {
     "@ant-design/icons": "^6.0.0",
+    "@ant-design/v5-patch-for-react-19": "^1.0.3",
+    "@iconify/react": "^6.0.2",
     "@tanstack/react-router": "^1.131.26",
-    "@tanstack/router-devtools": "^1.131.26",
     "@tanstack/router-plugin": "^1.131.26",
     "antd": "^5.27.1",
+    "nprogress": "^0.2.0",
     "react": "^19.1.1",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^19.1.1",
@@ -31,12 +57,14 @@
     "react-syntax-highlighter": "^15.6.1",
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.1",
+    "tanstack-router-keepalive": "^1.0.0",
     "zustand": "^5.0.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
     "@tailwindcss/postcss": "^4.1.12",
     "@tailwindcss/typography": "^0.5.16",
+    "@tanstack/react-router-devtools": "^1.133.22",
     "@testing-library/jest-dom": "^6.7.0",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",

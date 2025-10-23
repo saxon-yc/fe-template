@@ -1,11 +1,12 @@
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { ConfigProvider, theme, App as AntdApp } from 'antd'
 import { Helmet } from 'react-helmet-async'
+import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
-import { useAccountStore } from './store/useAccountStore'
-import { usePageSettingStore } from './store/usePageSettingStore'
+import { useAccountStore } from './stores/useAccountStore'
+import { usePageSettingStore } from './stores/usePageSettingStore'
 import './App.css'
 
 // Create a new router instance
@@ -44,6 +45,12 @@ export default function App() {
       >
         <AntdApp>
           <RouterProvider router={router} context={{ isLogged }} />
+          {/* 开发调试使用 */}
+          {import.meta.env.DEV && (
+            <div className='fixed bottom-0 right-0'>
+              <TanStackRouterDevtools position='bottom-right' router={router} />
+            </div>
+          )}
         </AntdApp>
       </ConfigProvider>
     </>

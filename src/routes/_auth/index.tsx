@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Button, Card, Typography, Space } from 'antd'
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons'
 
-import { useAppStore } from 'store/useAppStore'
+import { useAppStore } from '@/stores/useAppStore'
 
 const { Title, Text } = Typography
 

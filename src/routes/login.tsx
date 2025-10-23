@@ -12,7 +12,7 @@ import {
 import { LockOutlined, MailOutlined } from '@ant-design/icons'
 import { useEffect } from 'react'
 
-import { useAccountStore } from '@/store/useAccountStore'
+import { useAccountStore } from '@/stores/useAccountStore'
 
 function LoginPage() {
   const navigate = useNavigate()

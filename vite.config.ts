@@ -31,6 +31,14 @@ export default defineConfig(({ mode }) => {
             }
           },
         },
+        manualChunks: {
+          antd: ['antd', '@ant-design/v5-patch-for-react-19'],
+          axios: ['axios'],
+          // il8n: ['react-i18next', 'i18next'],
+          // react: ['react', 'react-dom', 'react-error-boundary'],
+          react: ['react', 'react-dom'],
+          tanstack: ['tanstack/react-router', 'tanstack-router-keepalive'],
+        },
       },
       minify: true,
     },
@@ -46,6 +54,9 @@ export default defineConfig(({ mode }) => {
         routes: '/src/routes',
         assets: '/src/assets',
       },
+    },
+    preview: {
+      port: 9725,
     },
     server: {
       port: 1573,

@@ -15,7 +15,6 @@
 - **API生成**: swagger-typescript-api
 - **提交规范**: Husky + lint-staged
 - **包管理**: pnpm (推荐)
-- **部署**: Docker Compose (推荐)
 
 ## 📦 快速开始
 
@@ -67,8 +66,8 @@ pnpm run format
 ### API代码生成
 
 ```bash
-# 从swagger.json生成API代码
-pnpm run gen:api
+# 从生成API代码
+pnpm run gen-api
 ```
 
 ## 📁 项目结构
@@ -85,7 +84,7 @@ src/
 │  └─__tests__
 ├─constants         # 常量
 ├─hooks             # 自定义Hooks
-├─lib               # 工具函数
+├─ utils            # 实用工具
 ├─store             # Zustand状态管理
 ├─test
 └─ main.tsx       # 应用入口
@@ -144,9 +143,10 @@ function MyComponent() {
 
 ## 📝 提交规范
 
-若新建项目没有 .git 目录，执行 **_git init_** 后，再执行以下命令初始化gitmoji：
+遵循 [Conventional Commits](<[conventionalcommits](https://www.conventionalcommits.org/)>) 规范的提交信息 。若新建项目没有 .git 目录，执行 **_git init_** 后
 
 ```bash
+# 非必需
 npx gitmoji -i
 ```
 
