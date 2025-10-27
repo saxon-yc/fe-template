@@ -1,71 +1,40 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Button, Card, Typography, Space } from 'antd'
-import { PlusOutlined, MinusOutlined } from '@ant-design/icons'
+import { Card, Col, Row } from 'antd'
 
-import { useAppStore } from '@/stores/useAppStore'
-
-const { Title, Text } = Typography
+import Echarts from '@/components/echarts'
 
 function HomePage() {
-  const { count, increment, decrement, user, setUser, clearUser } =
-    useAppStore()
-
-  const handleSetUser = () => {
-    setUser({
-      name: '张三',
-      email: 'zhangsan@example.com',
-    })
+  const chartOption = {
+    xAxis: {
+      type: 'category',
+      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    },
+    yAxis: {
+      type: 'value',
+    },
+    series: [
+      {
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line',
+        smooth: true,
+      },
+    ],
   }
-
   return (
-    <>
-      <Card className='max-w-4xl mx-auto'>
-        <Title level={2} className='mb-6 font-bold !mt-0'>
-          React 前端框架模板
-        </Title>
-
-        <div className='flex flex-col gap-4'>
-          <Card title='状态管理示例'>
-            <Space direction='vertical' align='start'>
-              <Text>当前计数: {count}</Text>
-              <Space>
-                <Button
-                  icon={<PlusOutlined />}
-                  onClick={increment}
-                  type='primary'
-                >
-                  增加
-                </Button>
-                <Button icon={<MinusOutlined />} onClick={decrement}>
-                  减少
-                </Button>
-              </Space>
-            </Space>
-          </Card>
-
-          <Card title='用户信息'>
-            <Space direction='vertical' align='start'>
-              {user ? (
-                <>
-                  <Text>姓名: {user.name}</Text>
-                  <Text>邮箱: {user.email}</Text>
-                  <Button onClick={clearUser} danger>
-                    清除用户
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Text>暂无用户信息</Text>
-                  <Button onClick={handleSetUser} type='primary' className=''>
-                    设置用户
-                  </Button>
-                </>
-              )}
-            </Space>
-          </Card>
-        </div>
-      </Card>
-    </>
+    <Row gutter={[10, 10]} className='w-full'>
+      <Col xs={24} sm={12} md={8} lg={6} xl={6}>
+        <Card title='图表示例'>
+          <div className='chart-category w-full h-[300px]'>
+            <Echarts
+              chartOption={chartOption}
+              parentClass='.chart-category'
+              width='100%'
+              height='100%'
+            />
+          </div>
+        </Card>
+      </Col>
+    </Row>
   )
 }
 

@@ -14,7 +14,7 @@ const defaultLocalIcon = 'no-icon'
 const symbolId = (localIcon: string = defaultLocalIcon) => {
   const iconName = localIcon || defaultLocalIcon
 
-  return `#icon_local-${iconName}`
+  return `#icon-local-${iconName}`
 }
 
 /**
@@ -23,7 +23,7 @@ const symbolId = (localIcon: string = defaultLocalIcon) => {
  * - Support iconify and local svg icon
  * - If icon and localIcon are passed at the same time, localIcon will be rendered first
  */
-const SvgIcon = ({ icon, localIcon, ...props }: Props) => {
+export default function SvgIcon({ icon, localIcon, ...props }: Props) {
   /** If localIcon is passed, render localIcon first */
   return localIcon || !icon ? (
     <svg height='1em' width='1em' {...props} aria-hidden='true'>
@@ -33,5 +33,3 @@ const SvgIcon = ({ icon, localIcon, ...props }: Props) => {
     <Icon icon={icon} {...props} />
   )
 }
-
-export default SvgIcon

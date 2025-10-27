@@ -4,12 +4,13 @@
 
 ## 🚀 技术栈
 
-- **框架**: React19
+- **框架**: [React19](https://react.dev/learn)
 - **语言**: TypeScript
 - **构建**: Vite
-- **UI库**: Antd Design + TailwindCSS
-- **路由**: TanStack Router (约定式路由)
-- **状态管理**: Zustand
+- **UI库**: [Ant Design](https://ant.design/components/overview-cn/) + [TailwindCSS](https://tailwindcss.com)
+- **ICON**: [iconify](https://icon-sets.iconify.design)
+- **路由**:[ TanStack Router](https://tanstack.com/router/latest) (约定式路由)
+- **状态管理**: [Zustand](https://zustand.docs.pmnd.rs/getting-started/introduction)
 - **代码检查**: ESLint + Prettier
 - **测试**: Vitest + Testing Library
 - **API生成**: swagger-typescript-api

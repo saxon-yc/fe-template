@@ -1,3 +1,4 @@
+import { useNavigate } from '@tanstack/react-router'
 import { Avatar, Typography } from 'antd'
 import useToken from 'antd/es/theme/useToken'
 import logo from 'assets/img/logo.jpg'
@@ -18,9 +19,13 @@ export default function Logo({
   className = '',
 }: LogoProps) {
   const [_, token] = useToken()
+  const navigate = useNavigate()
   return (
     <div
-      className={`flex items-center justify-center h-[56px] gap-3 ${className}`}
+      className={`flex items-center justify-center h-[56px] gap-3 ${className} cursor-pointer`}
+      onClick={() => {
+        navigate({ to: '/' })
+      }}
     >
       <Avatar src={logo} size={size} />
       {!collapsed && showText && (

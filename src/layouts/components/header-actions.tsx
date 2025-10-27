@@ -1,36 +1,21 @@
-import React from 'react'
-import {
-  Avatar,
-  Dropdown,
-  Menu,
-  Button,
-  Space,
-  Badge,
-  Tooltip,
-  Switch,
-  ColorPicker,
-} from 'antd'
+import { useEffect, useState } from 'react'
+import { Dropdown, Menu, Button, Tooltip } from 'antd'
 import {
   UserOutlined,
   SettingOutlined,
   LogoutOutlined,
-  BellOutlined,
-  SunOutlined,
-  MoonOutlined,
-  FullscreenOutlined,
-  FullscreenExitOutlined,
 } from '@ant-design/icons'
+import { useNavigate } from '@tanstack/react-router'
+
 import { useAccountStore } from '@/stores/useAccountStore'
 import { usePageSettingStore } from '@/stores/usePageSettingStore'
-import { useNavigate } from '@tanstack/react-router'
-import { useState } from 'react'
 import SvgIcon from '@/components/svg-icon'
 
 interface HeaderActionsProps {
   className?: string
 }
 
-const HeaderActions: React.FC<HeaderActionsProps> = ({ className }) => {
+export default function HeaderActions({ className }: HeaderActionsProps) {
   const navigate = useNavigate()
   const { logout, isLogged } = useAccountStore()
   const { setTheme, theme, themeMode, toggleTheme } = usePageSettingStore()
@@ -54,7 +39,7 @@ const HeaderActions: React.FC<HeaderActionsProps> = ({ className }) => {
   }
 
   // 监听全屏状态变化
-  React.useEffect(() => {
+  useEffect(() => {
     const handleFullscreenChange = () => {
       setIsFullscreen(!!document.fullscreenElement)
     }
@@ -104,9 +89,12 @@ const HeaderActions: React.FC<HeaderActionsProps> = ({ className }) => {
           }}
           icon={
             isFullscreen ? (
-              <SvgIcon icon='mdi:fullscreen-exit' className='text-[20px]' />
+              <SvgIcon
+                icon='gridicons:fullscreen-exit'
+                className='text-[20px]'
+              />
             ) : (
-              <SvgIcon icon='mdi:fullscreen' className='text-[20px]' />
+              <SvgIcon icon='gridicons:fullscreen' className='text-[20px]' />
             )
           }
           onClick={toggleFullscreen}
@@ -153,5 +141,3 @@ const HeaderActions: React.FC<HeaderActionsProps> = ({ className }) => {
     </div>
   )
 }
-
-export default HeaderActions

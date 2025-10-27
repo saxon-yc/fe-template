@@ -5,4 +5,13 @@ declare namespace GlobalType {
     isLogged?: boolean
   }
   type ModalSetedType = 'add' | 'editor'
+
+  interface RouteTabItem {
+    key: string
+    path: string
+    label: string
+    keepAlive: boolean
+    icon?: string
+    closable?: boolean
+  }
 }

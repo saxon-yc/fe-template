@@ -14,6 +14,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as AuthIndexRouteImport } from './routes/_auth/index'
+import { Route as AuthException500RouteImport } from './routes/_auth/exception/500'
+import { Route as AuthException404RouteImport } from './routes/_auth/exception/404'
 
 const AuthAboutLazyRouteImport = createFileRoute('/_auth/about')()
 
@@ -36,16 +38,30 @@ const AuthAboutLazyRoute = AuthAboutLazyRouteImport.update({
   path: '/about',
   getParentRoute: () => AuthRoute,
 } as any).lazy(() => import('./routes/_auth/about.lazy').then((d) => d.Route))
+const AuthException500Route = AuthException500RouteImport.update({
+  id: '/exception/500',
+  path: '/exception/500',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthException404Route = AuthException404RouteImport.update({
+  id: '/exception/404',
+  path: '/exception/404',
+  getParentRoute: () => AuthRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/about': typeof AuthAboutLazyRoute
   '/': typeof AuthIndexRoute
+  '/exception/404': typeof AuthException404Route
+  '/exception/500': typeof AuthException500Route
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/about': typeof AuthAboutLazyRoute
   '/': typeof AuthIndexRoute
+  '/exception/404': typeof AuthException404Route
+  '/exception/500': typeof AuthException500Route
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +69,22 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/_auth/about': typeof AuthAboutLazyRoute
   '/_auth/': typeof AuthIndexRoute
+  '/_auth/exception/404': typeof AuthException404Route
+  '/_auth/exception/500': typeof AuthException500Route
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/login' | '/about' | '/'
+  fullPaths: '/login' | '/about' | '/' | '/exception/404' | '/exception/500'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/about' | '/'
-  id: '__root__' | '/_auth' | '/login' | '/_auth/about' | '/_auth/'
+  to: '/login' | '/about' | '/' | '/exception/404' | '/exception/500'
+  id:
+    | '__root__'
+    | '/_auth'
+    | '/login'
+    | '/_auth/about'
+    | '/_auth/'
+    | '/_auth/exception/404'
+    | '/_auth/exception/500'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -97,17 +122,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthAboutLazyRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/_auth/exception/500': {
+      id: '/_auth/exception/500'
+      path: '/exception/500'
+      fullPath: '/exception/500'
+      preLoaderRoute: typeof AuthException500RouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_auth/exception/404': {
+      id: '/_auth/exception/404'
+      path: '/exception/404'
+      fullPath: '/exception/404'
+      preLoaderRoute: typeof AuthException404RouteImport
+      parentRoute: typeof AuthRoute
+    }
   }
 }
 
 interface AuthRouteChildren {
   AuthAboutLazyRoute: typeof AuthAboutLazyRoute
   AuthIndexRoute: typeof AuthIndexRoute
+  AuthException404Route: typeof AuthException404Route
+  AuthException500Route: typeof AuthException500Route
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
   AuthAboutLazyRoute: AuthAboutLazyRoute,
   AuthIndexRoute: AuthIndexRoute,
+  AuthException404Route: AuthException404Route,
+  AuthException500Route: AuthException500Route,
 }
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)

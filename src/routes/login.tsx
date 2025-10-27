@@ -8,6 +8,7 @@ import {
   Typography,
   Checkbox,
   Divider,
+  notification,
 } from 'antd'
 import { LockOutlined, MailOutlined } from '@ant-design/icons'
 import { useEffect } from 'react'
@@ -32,7 +33,11 @@ function LoginPage() {
     if (values.username === 'admin' && values.password === '123456') {
       // 登录成功，设置用户状态
       login(['home', 'about'])
-      message.success('登录成功！')
+      notification.success({
+        message: '登录成功',
+        placement: 'topRight',
+        description: '您已成功登录到管理后台。',
+      })
       // 重定向到管理后台首页
       navigate({ to: '/' })
     } else {
@@ -68,7 +73,6 @@ function LoginPage() {
                 rules={[{ required: true, message: '请输入邮箱/手机号' }]}
               >
                 <Input
-                  prefix={<MailOutlined className='text-gray-400' />}
                   placeholder='请输入邮箱/手机号'
                   className='h-12 rounded-lg'
                 />
@@ -79,7 +83,6 @@ function LoginPage() {
                 rules={[{ required: true, message: '请输入密码' }]}
               >
                 <Input.Password
-                  prefix={<LockOutlined className='text-gray-400' />}
                   placeholder='请输入密码'
                   className='h-12 rounded-lg'
                 />

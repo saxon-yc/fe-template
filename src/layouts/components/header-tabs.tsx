@@ -1,50 +1,57 @@
-import React, { useState, useEffect } from 'react'
-import { Tabs, Button, Dropdown, Menu } from 'antd'
-import { CloseOutlined, ReloadOutlined, MoreOutlined } from '@ant-design/icons'
+import { useState, useEffect } from 'react'
+import { Tabs, Button, Tooltip } from 'antd'
 import { useNavigate, useLocation } from '@tanstack/react-router'
 
-interface TabItem {
-  key: string
-  label: string
-  closable?: boolean
-}
+import { SIDE_MENUS } from '@/constants/menus'
+import { findMenuItem } from '@/utils'
+import SvgIcon from '@/components/svg-icon'
 
 interface HeaderTabsProps {
-  className?: string
+  themeMode?: 'light' | 'dark'
 }
 
-const HeaderTabs: React.FC<HeaderTabsProps> = ({ className }) => {
+export default function HeaderTabs({ themeMode }: HeaderTabsProps) {
   const navigate = useNavigate()
   const location = useLocation()
   const [activeKey, setActiveKey] = useState<string>('/')
-  const [tabs, setTabs] = useState<TabItem[]>([
-    { key: '/', label: '首页', closable: false },
+  const [tabs, setTabs] = useState<GlobalType.RouteTabItem[]>([
+    {
+      ...(({ ...rest } = SIDE_MENUS.find(item => item.path === '/')!) => ({
+        ...rest,
+        keepAlive: rest.keepAlive ?? true,
+      }))(),
+      closable: false,
+    },
   ])
 
-  // 路由标题映射
-  const routeTitleMap: Record<string, string> = {
-    '/': '首页',
-    '/about': '关于',
-  }
+  console.log('tabs', tabs)
 
   // 监听路由变化，自动添加标签页
   useEffect(() => {
     const currentPath = location.pathname
-    const currentTitle = routeTitleMap[currentPath] || '未知页面'
+    console.log('currentPath', currentPath)
 
     setActiveKey(currentPath)
 
     // 检查是否已存在该标签页
-    const existingTab = tabs.find(tab => tab.key === currentPath)
+    const existingTab = tabs.find(tab => tab.path === currentPath)
     if (!existingTab) {
-      setTabs(prev => [
-        ...prev,
-        {
-          key: currentPath,
-          label: currentTitle,
-          closable: currentPath !== '/', // 首页不可关闭
-        },
-      ])
+      // 递归查找菜单项（含子菜单）
+      const tabItem = findMenuItem(SIDE_MENUS, currentPath)!
+      console.log('tabItem', tabItem)
+
+      setTabs(prev => {
+        const newTabs = prev.some(tab => tab.path === tabItem.path)
+          ? prev
+          : [
+              ...prev,
+              {
+                ...tabItem,
+                closable: tabItem.path !== '/', // 首页不可关闭
+              },
+            ]
+        return newTabs
+      })
     }
   }, [location.pathname])
 
@@ -56,91 +63,67 @@ const HeaderTabs: React.FC<HeaderTabsProps> = ({ className }) => {
 
   // 关闭标签页
   const handleTabClose = (targetKey: string) => {
-    const targetIndex = tabs.findIndex(tab => tab.key === targetKey)
-    const newTabs = tabs.filter(tab => tab.key !== targetKey)
+    const targetIndex = tabs.findIndex(tab => tab.path === targetKey)
+    const newTabs = tabs.filter(tab => tab.path !== targetKey)
 
     setTabs(newTabs)
 
     // 如果关闭的是当前激活的标签页，需要切换到其他标签页
     if (targetKey === activeKey) {
       const newActiveKey =
-        newTabs[targetIndex - 1]?.key || newTabs[0]?.key || '/'
+        newTabs[targetIndex - 1]?.path || newTabs[0]?.path || '/'
       setActiveKey(newActiveKey)
       navigate({ to: newActiveKey })
     }
   }
-
   // 刷新当前页面
   const handleRefresh = () => {
     window.location.reload()
   }
 
-  // 关闭其他标签页
-  const handleCloseOthers = () => {
-    const currentTab = tabs.find(tab => tab.key === activeKey)
-    const homeTab = tabs.find(tab => tab.key === '/')
-
-    const newTabs = [homeTab, currentTab].filter(Boolean) as TabItem[]
-    setTabs(newTabs)
-  }
-
-  // 关闭所有标签页（除首页）
-  const handleCloseAll = () => {
-    const homeTab = tabs.find(tab => tab.key === '/')
-    setTabs(homeTab ? [homeTab] : [])
-    setActiveKey('/')
-    navigate({ to: '/' })
-  }
-
-  // 更多操作菜单
-  const moreMenu = (
-    <Menu>
-      <Menu.Item
-        key='refresh'
-        icon={<ReloadOutlined />}
-        onClick={handleRefresh}
-      >
-        刷新页面
-      </Menu.Item>
-      <Menu.Item key='close-others' onClick={handleCloseOthers}>
-        关闭其他
-      </Menu.Item>
-      <Menu.Item key='close-all' onClick={handleCloseAll}>
-        关闭所有
-      </Menu.Item>
-    </Menu>
-  )
-
   return (
-    <div className={`flex items-center ${className || ''}`}>
-      <Tabs
-        type='editable-card'
-        activeKey={activeKey}
-        onChange={handleTabChange}
-        onEdit={(targetKey, action) => {
-          if (action === 'remove') {
-            handleTabClose(targetKey as string)
-          }
-        }}
-        hideAdd
-        className='flex-1 h-[40px]'
-        items={tabs.map(tab => ({
-          key: tab.key,
-          label: tab.label,
-          closable: tab.closable,
-        }))}
-      />
-
-      <Dropdown overlay={moreMenu} trigger={['click']} placement='bottomRight'>
-        <Button
-          type='text'
-          icon={<MoreOutlined />}
-          size='small'
-          className='ml-2'
+    <div
+      className={`h-[40px] px-[20px] shadow-sm z-1 ${themeMode === 'dark' ? 'bg-[#141414]' : 'bg-[#ffffff]'}  dark:border-gray-700`}
+    >
+      <div className={`h-[40px] flex items-center`}>
+        <Tabs
+          type='editable-card'
+          hideAdd
+          activeKey={activeKey}
+          onChange={handleTabChange}
+          onEdit={(targetKey, action) => {
+            if (action === 'remove') {
+              handleTabClose(targetKey as string)
+            }
+          }}
+          className='flex-1 h-[34px] !m-[0px] custom-header-tabs'
+          items={tabs.map(tab => ({
+            key: tab.path,
+            label: (
+              <div className='flex items-center gap-2'>
+                {tab.icon && <SvgIcon icon={tab.icon} />}
+                <span className='text-[14px]'>{tab.label}</span>
+              </div>
+            ),
+            closable: tab.closable,
+          }))}
         />
-      </Dropdown>
+        <div>
+          <Tooltip title='刷新页面'>
+            <Button
+              type='text'
+              icon={
+                <SvgIcon
+                  icon='material-symbols:refresh-rounded'
+                  className='text-[20px] mt-[1px]'
+                />
+              }
+              size='small'
+              onClick={handleRefresh}
+            />
+          </Tooltip>
+        </div>
+      </div>
     </div>
   )
 }
-
-export default HeaderTabs

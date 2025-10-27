@@ -6,7 +6,7 @@ import readmeContent from '../../../README.md?raw'
 
 function AboutPage() {
   return (
-    <div className='max-w-4xl mx-auto'>
+    <div className=''>
       <Card>
         <MarkdownRender>{readmeContent}</MarkdownRender>
       </Card>

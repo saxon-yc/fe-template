@@ -2,6 +2,7 @@
 /* @tailwind base;
 @tailwind components;
 @tailwind utilities; */
+@import url(./ant-reset.css);
 
 /* 自定义样式 */
 :root {
