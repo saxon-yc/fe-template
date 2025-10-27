@@ -16,7 +16,7 @@ function sync_portal() {
   mkdir $PROJECT_NAME
 
   echo "移动文件 ..."
-  cp -r ./out/*  $PROJECT_NAME/
+  cp -r ./dist/*  $PROJECT_NAME/
   echo "移动完成"
 
   echo "打包压缩 ..."

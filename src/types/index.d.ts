@@ -13,5 +13,8 @@ declare namespace GlobalType {
     keepAlive: boolean
     icon?: string
     closable?: boolean
+    children?: RouteTabItem[]
   }
 }
+declare module 'echarts-gl/charts'
+declare module 'echarts-gl/components'

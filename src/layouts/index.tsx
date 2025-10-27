@@ -7,7 +7,6 @@ import HeaderActions from './components/header-actions'
 import EnhancedBreadcrumb from './components/enhanced-breadcrumb'
 import SideMenu from './components/side-menu'
 import SvgIcon from '@/components/svg-icon'
-import { useMobile } from '@/hooks/useMobile'
 
 const { Header, Content } = Layout
 
@@ -18,7 +17,6 @@ const AsideWidth = 220
 export default function AdminLayout({ children }: AdminLayoutProps) {
   const { themeMode } = usePageSettingStore()
   const [collapsed, setCollapsed] = useState(false)
-  const isMobile = useMobile()
   return (
     <Layout hasSider>
       <SideMenu

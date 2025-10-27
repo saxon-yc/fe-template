@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
 interface AppState {
+  token: string
   isLogged: boolean
   permissions: string[]
   login: (permissions: string[]) => void
@@ -12,6 +13,7 @@ interface AppState {
 export const useAccountStore = create<AppState>()(
   persist(
     set => ({
+      token: '',
       isLogged: false,
       permissions: [],
 

@@ -1,10 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
+import type { EChartsOption } from 'echarts'
 import { Card, Col, Row } from 'antd'
 
 import Echarts from '@/components/echarts'
 
 function HomePage() {
-  const chartOption = {
+  const chartOption: EChartsOption = {
     xAxis: {
       type: 'category',
       data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],

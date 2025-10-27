@@ -18,7 +18,7 @@ interface HeaderActionsProps {
 export default function HeaderActions({ className }: HeaderActionsProps) {
   const navigate = useNavigate()
   const { logout, isLogged } = useAccountStore()
-  const { setTheme, theme, themeMode, toggleTheme } = usePageSettingStore()
+  const { themeMode, toggleTheme } = usePageSettingStore()
   const [isFullscreen, setIsFullscreen] = useState(false)
 
   // 退出登录

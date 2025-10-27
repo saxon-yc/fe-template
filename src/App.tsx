@@ -1,6 +1,5 @@
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { ConfigProvider, theme, App as AntdApp } from 'antd'
-import { Helmet } from 'react-helmet-async'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 
 // Import the generated route tree

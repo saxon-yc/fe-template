@@ -1,6 +1,5 @@
 import { Button, Image, Result } from 'antd'
 import { useNavigate } from '@tanstack/react-router'
-import SvgIcon from './svg-icon'
 
 interface ExceptionProps {
   src: string

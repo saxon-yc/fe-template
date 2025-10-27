@@ -10,7 +10,6 @@ import {
   Divider,
   notification,
 } from 'antd'
-import { LockOutlined, MailOutlined } from '@ant-design/icons'
 import { useEffect } from 'react'
 
 import { useAccountStore } from '@/stores/useAccountStore'

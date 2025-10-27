@@ -2,7 +2,7 @@ import { message } from 'antd'
 import { useState } from 'react'
 
 import { DOWNLOAD_STATUS } from '@/constants/enum'
-import { useAccountStore } from '@/stores/useAccount'
+import { useAccountStore } from '@/stores/useAccountStore'
 
 interface Config {
   url: string
