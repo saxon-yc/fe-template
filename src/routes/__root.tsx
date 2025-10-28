@@ -7,7 +7,9 @@ import {
   redirect,
 } from '@tanstack/react-router'
 import Exception from '@/components/exception'
+import LoadingScreen from '@/components/loading-screen'
 import NotFoundSvg from '@/assets/svg-icon/not-found.svg'
+import { useInitialLoading } from '@/hooks/useInitialLoading'
 
 export interface RouterContext {
   isLogged: boolean
@@ -29,12 +31,30 @@ const getPageTitle = () => {
 }
 
 export const Route = createRootRouteWithContext<RouterContext>()({
-  component: () => (
-    <>
-      <HeadContent />
-      <Outlet />
-    </>
-  ),
+  beforeLoad: async () => {
+    window.NProgress?.start?.()
+  },
+  loader: async () => {
+    window.NProgress?.done?.()
+  },
+  component: () => {
+    const isInitialLoading = useInitialLoading(2000)
+
+    if (isInitialLoading) {
+      return <LoadingScreen tip={import.meta.env.VITE_APP_TITLE} />
+    }
+
+    return (
+      <>
+        <HeadContent />
+        <Outlet />
+      </>
+    )
+  },
+
+  pendingComponent: () => {
+    return <LoadingScreen tip='页面加载中...' />
+  },
   notFoundComponent: () => {
     // 对于根路由的404，重定向到404页面
     throw redirect({ to: '/exception/404' })

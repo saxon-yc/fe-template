@@ -12,20 +12,16 @@
   .ant-tabs-tab {
     @apply !h-[34px] !text-sm !px-[24px] py-[12px] !m-[0px] !border-none !bg-transparent;
     /* 浅色模式下的文字颜色 */
-    color: #666666;
     transition: all 0.2s ease;
   }
 
   .ant-tabs-tab:hover {
     @apply !bg-gray-100;
-    color: #333333;
   }
 
   .ant-tabs-tab-active {
-    @apply !bg-[#f5f5f5] !text-[#333333] !shadow-none;
+    @apply !bg-[#e6f4ff] !text-[#333333] !shadow-none;
     /* 浅色模式下选中状态 */
-    background-color: #f5f5f5 !important;
-    color: #1677ff !important;
     font-weight: 500;
   }
 
@@ -51,8 +47,8 @@
 
   .ant-tabs-tab-active {
     /* 暗色模式下选中状态，与侧边菜单保持一致 */
-    background-color: #1677ff !important;
-    color: #ffffff !important;
+    background-color: #15325b !important;
+    color: #1668dc !important;
     font-weight: 500;
   }
 }

@@ -88,7 +88,7 @@ scripts/            # 脚本文件
 src/
 ├─assets            # 静态资源
 ├─routes            # 路由页面(约定式路由)
-├─service           # API相关文件, 使用自动生成
+├─api               # API相关文件
 ├─components        # 可复用组件
 │  └─__tests__
 ├─constants         # 常量

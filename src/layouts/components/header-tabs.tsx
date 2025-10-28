@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Tabs, Button, Tooltip } from 'antd'
+import { Tabs } from 'antd'
 import { useNavigate, useLocation } from '@tanstack/react-router'
 
 import { SIDE_MENUS } from '@/constants/menus'
@@ -76,10 +76,6 @@ export default function HeaderTabs({ themeMode }: HeaderTabsProps) {
       navigate({ to: newActiveKey })
     }
   }
-  // 刷新当前页面
-  const handleRefresh = () => {
-    window.location.reload()
-  }
 
   return (
     <div
@@ -108,21 +104,6 @@ export default function HeaderTabs({ themeMode }: HeaderTabsProps) {
             closable: tab.closable,
           }))}
         />
-        <div>
-          <Tooltip title='刷新页面'>
-            <Button
-              type='text'
-              icon={
-                <SvgIcon
-                  icon='material-symbols:refresh-rounded'
-                  className='text-[20px] mt-[1px]'
-                />
-              }
-              size='small'
-              onClick={handleRefresh}
-            />
-          </Tooltip>
-        </div>
       </div>
     </div>
   )

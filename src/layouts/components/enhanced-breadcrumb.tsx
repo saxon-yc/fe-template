@@ -103,15 +103,7 @@ export default function EnhancedBreadcrumb({
 
           const breadcrumbContent = (
             <span
-              className={`flex items-center gap-1 ${
-                isClickable
-                  ? 'cursor-pointer hover:text-blue-500 transition-colors'
-                  : isLast
-                    ? 'text-gray-900 dark:text-gray-100 font-medium'
-                    : hasDropdown
-                      ? 'cursor-pointer hover:text-blue-500 transition-colors'
-                      : 'text-gray-500'
-              }`}
+              className={`flex items-center gap-1 `}
               onClick={() => {
                 if (isClickable && item.path) {
                   handleBreadcrumbClick(item.path!)

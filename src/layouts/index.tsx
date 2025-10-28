@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Layout, Button, FloatButton, Tooltip } from 'antd'
 
 import { usePageSettingStore } from '@/stores/usePageSettingStore'
@@ -17,6 +17,12 @@ const AsideWidth = 220
 export default function AdminLayout({ children }: AdminLayoutProps) {
   const { themeMode } = usePageSettingStore()
   const [collapsed, setCollapsed] = useState(false)
+
+  // 监听主题模式变化，同步到 DOM 的 data-theme 属性
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', themeMode)
+  }, [themeMode])
+
   return (
     <Layout hasSider>
       <SideMenu

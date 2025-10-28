@@ -1,10 +1,11 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import { tanstackRouter } from '@tanstack/router-plugin/vite'
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const isDev = mode === 'testing' || process.env.NODE_ENV === 'development'
+  const env = loadEnv(mode, process.cwd(), '')
   return {
     plugins: [
       tanstackRouter({
@@ -62,7 +63,7 @@ export default defineConfig(({ mode }) => {
       port: 1573,
       proxy: {
         '/api': {
-          target: 'http://localhost:3001',
+          target: env.VITE_API_DEV_BASE_URL,
           changeOrigin: true,
           secure: false,
         },

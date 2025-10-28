@@ -1,10 +1,19 @@
+import { useRequest } from 'ahooks'
 import { createFileRoute } from '@tanstack/react-router'
 import type { EChartsOption } from 'echarts'
 import { Card, Col, Row } from 'antd'
 
 import Echarts from '@/components/echarts'
+import { postApiV1File } from '@/service/sdk.gen'
 
 function HomePage() {
+  useRequest(() =>
+    postApiV1File({
+      body: {
+        file: new File([], 'test.txt'),
+      },
+    })
+  )
   const chartOption: EChartsOption = {
     xAxis: {
       type: 'category',
